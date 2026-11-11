@@ -8,3 +8,9 @@ Event-Driven:
 Because tasks are offloaded, Node.js relies on an event-driven architecture (powered by the Event Loop) to coordinate everything. When an asynchronous background task finishes, it triggers an event, placing its callback function into a queue. The event loop continuously checks this queue and executes the callbacks on the main thread as soon as it's free.
 
 The real trick to knowing Node: It’s unbeatable for heavy read/write apps like chat tools, APIs, and microservices because it uses almost zero memory waiting around. But the moment you try to compute a massive loop or process a video on that single thread, you crash the party for every other user on the server." 
+
+
+
+The Architectural Trade-Off:
+This design makes Node a powerhouse for I/O-bound, real-time apps. However, because JavaScript execution is single-threaded, if you run a heavy CPU-bound task—like a massive JSON parsing loop or image manipulation—you completely block the event loop. Every other user's request freezes until that math is done."
+
