@@ -30,6 +30,9 @@ Not everything can be handled asynchronously by the OS kernel. Operations like F
 To prevent these from freezing the application, libuv maintains a background thread pool (default size of 4). It offloads these heavy, blocking tasks to the thread pool, lets the main thread keep running, and then pushes the result back to the event loop when finished.
 
 
+Even when another system executes the task, libuv acts as the central coordinator. It owns the Event Loop that orchestrates when callbacks are pushed back onto the V8 call stack, and its built-in Thread Pool (4 threads by default) handles blocking operations that lack native OS async support, such as file system (fs) operations, DNS lookups (dns.lookup), and certain crypto functions.
+
+
 
 
 
